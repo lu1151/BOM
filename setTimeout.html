@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Stop timer</button>
+    <script>
+        var timer1 = setTimeout(timer, 5000);
+
+        var timer2 = setTimeout(timer, 6000);
+
+        function timer() {
+            console.log("5 seconds up");
+        }
+
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", function(){
+            clearTimeout(timer1);
+        })
+    </script>
+</body>
+
+</html>

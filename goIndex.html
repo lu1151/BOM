@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Click</button>
+    <div></div>
+    <script>
+        var btn = document.querySelector("button");
+        var div = document.querySelector("div");
+        var timer = 5;
+        google();
+
+        btn.addEventListener("click", function () {
+            location.href = "https://www.google.com/";
+        })
+        setInterval(google, 1000);
+
+        function google() {
+            if (timer == 0) {
+                location.href = "https://www.google.com/";
+            } else {
+                div.innerHTML = timer + " seconds to Google";
+                timer--;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

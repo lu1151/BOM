@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider-bar {
+            position: absolute;
+            left: 50%;
+            top: 300px;
+            margin-left: 600px;
+            width: 45px;
+            height: 130px;
+            background-color: pink;
+        }
+
+        .w {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        .header {
+            height: 150px;
+            background-color: purple;
+        }
+
+        .banner {
+            height: 250px;
+            background-color: skyblue;
+        }
+
+        .main {
+            height: 1000px;
+            background-color: yellowgreen;
+        }
+
+        span {
+            display: none;
+            position: absolute;
+            bottom: 0px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-bar">
+        <span class="goBack">Back to top</span>
+    </div>
+    <div class="header w">Header</div>
+    <div class="banner w">Banner</div>
+    <div class="main w">Main</div>
+    <script>
+        var slider = document.querySelector(".slider-bar");
+        var banner = document.querySelector(".banner");
+        var main = document.querySelector(".main");
+        var span = document.querySelector(".goBack");
+        var mainTop = main.offsetTop;
+        var bannerTop = banner.offsetTop;
+        var sliderTop = slider.offsetTop - bannerTop;
+        document.addEventListener("scroll", function () {
+            if (window.pageYOffset >= bannerTop) {
+                slider.style.position = "fixed";
+                slider.style.top = sliderTop + "px";
+            } else {
+                slider.style.position = "absolute";
+                slider.style.top = "300px";
+            }
+            if (window.pageYOffset >= mainTop) {
+                span.style.display = "block";
+            } else {
+                span.style.display = "none";
+            }
+
+        })
+
+        span.addEventListener("click", function () {
+            slowDown(window, 0);
+        })
+
+        function slowDown(obj, target, callback) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var step = (target - window.pageYOffset) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (obj.window.pageYOffset == target) {
+                    clearInterval(obj.timer);
+                    // if (callback) {
+                    //   callback();
+                    callback && callback();
+                }
+                window.scroll(0,window.pageYOffset + step);
+            }, 10);
+        }
+
+    </script>
+</body>
+
+</html>
